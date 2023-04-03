@@ -177,41 +177,38 @@ questions = [
                 "scores": [5, 6, 8, 7, 8]},
             {"option": "To generate new data based on existing data",
              "scores": [7, 5, 8, 6, 5]}]
-    },
+    }
 
 ]
 
+def calculate_scores(answers, questions):
+    # Initialize a list to keep track of the score for each category
+    category_scores = [0, 0, 0, 0, 0]
 
-def calculate_scores(answers, questions_data):
-    """
-    Calculate the scores based on the provided answers and question data.
+    for question in questions:
+        for option in question["options"]:
+            if option["option"] == answers.get(question["question"]):
+                # Append the scores for this option to a list
+                scores = option["scores"]
+                # Add the score values for this option to the corresponding category score
+                for i, score in enumerate(scores):
+                    if i < len(category_scores):
+                        category_scores[i] += score
 
-    Args:
-        answers (dict): A dictionary of answers submitted by the user.
-        questions_data (list): A list of dictionaries containing the question data and point values.
+    # Print the title and score for each category
+    category_titles = ["Openness", "Conscientiousness", "Extraversion", "Agreeableness", "Neuroticism"]
+    for i in range(5):
+        print(category_titles[i], ":", category_scores[i])
 
-    Returns:
-        int: The total score as a percentage from 1-100.
-
-    """
-    # Initialize a variable to keep track of the total score
-    total_score = 0
-
-    # Iterate over the answers submitted by the user
-    for i, answer in enumerate(answers.values()):
-        # Get the list of score values for this question from the questions_data list
-        score_values = questions_data[0]["options"][i]["scores"]
-
-        # Get the index of the user's answer in the list of options
-        option_index = questions_data[0]["options"][i]["option"].index(answer)
-
-        # Add the corresponding score value to the total score
-        total_score += score_values[option_index]
+    # Calculate the total score as a sum of all category scores
+    total_score = sum(category_scores)
 
     # Calculate the percentage score as a fraction of the maximum possible score (sum of all scores)
-    max_score = sum([max(option["scores"]) for option in questions_data[0]["options"]])
+    max_score = sum([max(option["scores"]) for question in questions for option in question["options"]])
     percentage_score = round((total_score / max_score) * 100)
 
     # Return the percentage score
     return percentage_score
+
+
 
