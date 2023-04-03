@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Level {{ level }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/level.css') }}">
+</head>
+<body>
+    <h1>Level {{ level }}</h1>
+    <p>Welcome to Level 3!</p>
+    <div class="blog-container">
+        <div class="blog-link">
+            <a href="{{ url_for('blog_1') }}">
+                <img src="{{ url_for('static', filename='images/blog1.jpg') }}">
+                <h2>Blog 1</h2>
+                <p>Introduction to Blog 1</p>
+            </a>
+        </div>
+        <div class="blog-link">
+            <a href="{{ url_for('blog_2') }}">
+                <img src="{{ url_for('static', filename='images/blog2.jpg') }}">
+                <h2>Blog 2</h2>
+                <p>Introduction to Blog 2</p>
+            </a>
+        </div>
+        <div class="blog-link">
+            <a href="{{ url_for('blog_3') }}">
+                <img src="{{ url_for('static', filename='images/blog3.jpg') }}">
+                <h2>Blog 3</h2>
+                <p>Introduction to Blog 3</p>
+            </a>
+        </div>
+        <div class="blog-link">
+            <a href="{{ url_for('blog_4') }}">
+                <img src="{{ url_for('static', filename='images/blog4.jpg') }}">
+                <h2>Blog 4</h2>
+                <p>Introduction to Blog 4</p>
+            </a>
+        </div>
+        <div class="blog-link">
+            <a href="{{ url_for('blog_5') }}">
+                <img src="{{ url_for('static', filename='images/blog5.jpg') }}">
+                <h2>Blog 5</h2>
+                <p>Introduction to Blog 5</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
