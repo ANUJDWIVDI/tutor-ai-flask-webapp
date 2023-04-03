@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Machine Learning Quiz</title>
+</head>
+<body>
+    <h1>Machine Learning Quiz</h1>
+    <form method="POST" action="/submit">
+        {% for q in questions %}
+        <h3>{{ q.question }}</h3>
+        {% for option in q.options %}
+        <label>
+            <input type="radio" name="{{ q.question }}" value="{{ option.option }}">
+            {{ option.option }}
+        </label><br>
+        {% endfor %}
+        {% endfor %}
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

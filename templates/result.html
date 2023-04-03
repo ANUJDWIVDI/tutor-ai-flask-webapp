@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Results</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+		}
+
+		.progress {
+			width: 80%;
+			margin: 50px auto;
+			position: relative;
+			height: 30px;
+			background-color: #ddd;
+			border-radius: 50px;
+			overflow: hidden;
+		}
+
+		.progress:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 100%;
+			background-color: #4CAF50;
+			transition: width 1s ease-in-out;
+			z-index: 2;
+		}
+
+		.percentage {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 3;
+			font-size: 24px;
+			color: #333;
+		}
+	</style>
+</head>
+<body>
+	<div class="progress">
+		<div class="percentage"></div>
+	</div>
+	<script>
+		var percentage_score = {{ percentage_score }};
+		var progress = document.querySelector(".progress");
+		var percentage = document.querySelector(".percentage");
+		var width = 0;
+		var id = setInterval(frame, 10);
+
+		function frame() {
+			if (width >= percentage_score) {
+				clearInterval(id);
+			} else {
+				width++;
+				progress.querySelector(":after").style.width = width + "%";
+				percentage.textContent = width + "%";
+			}
+		}
+	</script>
+</body>
+</html>
